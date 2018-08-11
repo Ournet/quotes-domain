@@ -8,7 +8,8 @@ export class QuoteHelper {
     static build(params: BuildQuoteParams): Quote {
         const text = truncateAt(params.text.trim(), QUOTE_TEXT_MAX_LENGTH);
         const textHash = QuoteHelper.textHash(text);
-        const id = md5([params.lang.trim(), params.country.trim(), textHash, params.author.id].join('|'));
+        const idHash = md5([params.author.id, textHash].join('|'));
+        const id = [params.country.trim(), params.lang.trim(), idHash].join('');
 
         const lastFoundAt = params.lastFoundAt || new Date();
         const createdAt = params.createdAt || lastFoundAt;
@@ -33,6 +34,13 @@ export class QuoteHelper {
 
     static textHash(text: string) {
         return md5(atonic(cleanText(text.toLowerCase())));
+    }
+
+    static parseLocaleFromId(id: string): { country: string, lang: string } {
+        return {
+            country: id.substr(0, 2),
+            lang: id.substr(2, 2),
+        };
     }
 
     static expiresAt(refDate: Date) {
