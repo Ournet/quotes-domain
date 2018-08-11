@@ -42,6 +42,6 @@
     "typescript": "latest"
   },
   "dependencies": {
-    "transliteration": "^1.6.6"
+    "ellipsize": "^0.1.0"
   }
 }

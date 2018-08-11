@@ -8,22 +8,18 @@ export interface Quote {
     source: QuoteSource
     /** Author details */
     author: QuoteAuthor
-    /** Phrases hashes */
-    hashes: string[]
-    /** Parent quote id. This quote is part of a longer one, that's the parent. */
-    parentId?: string
-    /** Quote's summary */
-    summary: string
+    text: string
 
     topics?: Topic[]
     topicsLocation?: TopicLocationMap
 
-    hasText: boolean
+    createdAt: Date
+    expiresAt: Date
 }
 
 export type QuoteAuthor = {
     name: string
-    id?: string
+    id: string
 }
 
 export type QuoteSource = {
@@ -31,11 +27,6 @@ export type QuoteSource = {
     path: string
     title: string
     id?: string
-}
-
-export interface QuoteText {
-    id: string
-    text: string
 }
 
 export interface BuildQuoteParams {
@@ -48,4 +39,7 @@ export interface BuildQuoteParams {
     topics?: Topic[]
     topicsLocation?: TopicLocationMap
     text: string
+
+    createdAt?: Date
+    expiresAt?: Date
 }
