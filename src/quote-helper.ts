@@ -1,7 +1,7 @@
 import { BuildQuoteParams, Quote } from "./quote";
 import { cleanText, atonic, md5 } from '@ournet/domain';
-import { truncateAt } from "../helpers";
-import { QUOTE_TEXT_MAX_LENGTH, QUOTE_EXPIRE_DAYS } from "../config";
+import { truncateAt } from "./helpers";
+import { QUOTE_TEXT_MAX_LENGTH, QUOTE_EXPIRE_DAYS } from "./config";
 
 export class QuoteHelper {
 
