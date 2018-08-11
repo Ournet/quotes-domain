@@ -1,5 +1,5 @@
 import { BuildQuoteParams, Quote } from "./quote";
-import { sha1, cleanText, atonic, md5 } from '@ournet/domain';
+import { cleanText, atonic, md5 } from '@ournet/domain';
 import { truncateAt } from "../helpers";
 import { QUOTE_TEXT_MAX_LENGTH, QUOTE_EXPIRE_DAYS } from "../config";
 
@@ -10,8 +10,9 @@ export class QuoteHelper {
         const textHash = QuoteHelper.textHash(text);
         const id = md5([params.lang.trim(), params.country.trim(), textHash, params.author.id].join('|'));
 
-        const createdAt = params.createdAt || new Date();
-        const expiresAt = QuoteHelper.expiresAt(createdAt);
+        const lastFoundAt = params.lastFoundAt || new Date();
+        const createdAt = params.createdAt || lastFoundAt;
+        const expiresAt = QuoteHelper.expiresAt(lastFoundAt);
 
         const quote: Quote = {
             id,
@@ -24,17 +25,18 @@ export class QuoteHelper {
             topicsLocation: params.topicsLocation,
             createdAt,
             expiresAt,
+            lastFoundAt,
         };
 
         return quote;
     }
 
     static textHash(text: string) {
-        return sha1(atonic(cleanText(text.toLowerCase())));
+        return md5(atonic(cleanText(text.toLowerCase())));
     }
 
-    static expiresAt(createdAt: Date) {
-        const expiresAt = new Date(createdAt);
+    static expiresAt(refDate: Date) {
+        const expiresAt = new Date(refDate);
         expiresAt.setDate(expiresAt.getDate() + QUOTE_EXPIRE_DAYS);
 
         return expiresAt;
