@@ -1,5 +1,5 @@
 import { BuildQuoteParams, Quote } from "./quote";
-import { cleanText, atonic, md5 } from '@ournet/domain';
+import { clearText, atonic, md5 } from '@ournet/domain';
 import { truncateAt } from "./helpers";
 import { QUOTE_TEXT_MAX_LENGTH, QUOTE_EXPIRE_DAYS } from "./config";
 
@@ -33,7 +33,7 @@ export class QuoteHelper {
     }
 
     static textHash(text: string) {
-        return md5(atonic(cleanText(text.toLowerCase())));
+        return md5(atonic(clearText(text.toLowerCase())));
     }
 
     static parseLocaleFromId(id: string): { country: string, lang: string } {
