@@ -27,6 +27,7 @@ export class QuoteHelper {
             createdAt,
             expiresAt,
             lastFoundAt,
+            countViews: params.countViews || 0,
         };
 
         return quote;

@@ -16,6 +16,8 @@ export interface Quote {
     lastFoundAt: Date
     createdAt: Date
     expiresAt: Date
+
+    countViews: number
 }
 
 export type QuoteAuthor = {
@@ -44,4 +46,6 @@ export interface BuildQuoteParams {
     lastFoundAt?: Date
     createdAt?: Date
     expiresAt?: Date
+
+    countViews?: number
 }

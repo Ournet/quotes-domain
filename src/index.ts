@@ -24,3 +24,7 @@ export {
     QuoteWriteRepository,
     QuoteRepository,
 } from './quote-repository';
+
+export {
+    QuoteValidator,
+} from './quote-validator';
