@@ -13,9 +13,9 @@ export interface Quote {
     topics?: Topic[]
     topicsLocation?: TopicLocationMap
 
-    lastFoundAt: Date
-    createdAt: Date
-    expiresAt: Date
+    lastFoundAt: string
+    createdAt: string
+    expiresAt: number
 
     countViews: number
 }
@@ -43,9 +43,9 @@ export interface BuildQuoteParams {
     topicsLocation?: TopicLocationMap
     text: string
 
-    lastFoundAt?: Date
-    createdAt?: Date
-    expiresAt?: Date
+    lastFoundAt?: string
+    createdAt?: string
+    expiresAt?: number
 
     countViews?: number
 }

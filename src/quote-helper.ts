@@ -11,9 +11,9 @@ export class QuoteHelper {
         const idHash = md5([params.author.id, textHash].join('|'));
         const id = [params.country.trim(), params.lang.trim(), idHash].join('');
 
-        const lastFoundAt = params.lastFoundAt || new Date();
+        const lastFoundAt = params.lastFoundAt || new Date().toISOString();
         const createdAt = params.createdAt || lastFoundAt;
-        const expiresAt = QuoteHelper.expiresAt(lastFoundAt);
+        const expiresAt = QuoteHelper.expiresAt(new Date(lastFoundAt));
 
         const quote: Quote = {
             id,
@@ -48,6 +48,6 @@ export class QuoteHelper {
         const expiresAt = new Date(refDate);
         expiresAt.setDate(expiresAt.getDate() + QUOTE_EXPIRE_DAYS);
 
-        return expiresAt;
+        return Math.floor(expiresAt.getTime() / 1000);
     }
 }
