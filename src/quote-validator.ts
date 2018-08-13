@@ -9,7 +9,7 @@ export class QuoteValidator extends EntityValidator<Quote> {
 }
 
 const schema = {
-    id: Joi.string().regex(/^[a-z0-9]${36}/),
+    id: Joi.string().regex(/^[a-z0-9]{36}$/),
 
     lang: Joi.string().regex(/^[a-z]{2}$/),
     country: Joi.string().regex(/^[a-z]{2}$/),
@@ -36,13 +36,6 @@ const schema = {
         type: Joi.string().valid(['PERSON', 'ORG', 'PLACE', 'PRODUCT', 'WORK']),
     })),
 
-    topicsLocation: Joi.object()
-        .pattern(/^[a-z0-9_-]{4,40}$/,
-            Joi.object().keys({
-                index: Joi.number().integer().min(0).required(),
-                length: Joi.number().integer().min(2).required(),
-            })),
-
     lastFoundAt: Joi.date().iso(),
     createdAt: Joi.date().iso(),
     expiresAt: Joi.date().timestamp(),
@@ -63,8 +56,6 @@ const createSchema: Joi.SchemaMap = {
 
     topics: schema.topics,
 
-    topicsLocation: schema.topicsLocation,
-
     lastFoundAt: schema.lastFoundAt.required(),
     createdAt: schema.createdAt.required(),
     expiresAt: schema.expiresAt.required(),
@@ -78,7 +69,6 @@ const updateSchema: Joi.SchemaMap = {
     author: schema.author,
     text: schema.text,
     topics: schema.topics,
-    topicsLocation: schema.topicsLocation,
 
     lastFoundAt: schema.lastFoundAt,
     expiresAt: schema.expiresAt,
