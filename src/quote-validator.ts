@@ -36,9 +36,9 @@ const schema = {
         type: Joi.string().valid(['PERSON', 'ORG', 'PLACE', 'PRODUCT', 'WORK']),
     })),
 
-    lastFoundAt: Joi.date().iso(),
-    createdAt: Joi.date().iso(),
-    expiresAt: Joi.date().timestamp(),
+    lastFoundAt: Joi.string().isoDate(),
+    createdAt: Joi.string().isoDate(),
+    expiresAt: Joi.date().timestamp().raw(),
 
     countViews: Joi.number().integer().min(0),
 };
