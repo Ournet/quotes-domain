@@ -43,7 +43,7 @@ export interface QuoteRepository extends Repository<Quote> {
     latestByTopic(params: LatestQuotesByTopicQueryParams, options?: RepositoryAccessOptions<Quote>): Promise<Quote[]>
     latestByAuthor(params: LatestQuotesByAuthorQueryParams, options?: RepositoryAccessOptions<Quote>): Promise<Quote[]>
 
-    count(params: CountQuotesQueryParams): Promise<Quote[]>
-    countByTopic(params: CountQuotesByTopicQueryParams): Promise<Quote[]>
-    countByAuthor(params: CountQuotesByAuthorQueryParams): Promise<Quote[]>
+    count(params: CountQuotesQueryParams): Promise<number>
+    countByTopic(params: CountQuotesByTopicQueryParams): Promise<number>
+    countByAuthor(params: CountQuotesByAuthorQueryParams): Promise<number>
 }

@@ -20,6 +20,9 @@ export {
     LatestQuotesByAuthorQueryParams,
     LatestQuotesByTopicQueryParams,
     LatestQuotesQueryParams,
+    CountQuotesByAuthorQueryParams,
+    CountQuotesByTopicQueryParams,
+    CountQuotesQueryParams,
     QuoteRepository,
 } from './quote-repository';
 
