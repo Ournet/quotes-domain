@@ -34,6 +34,7 @@ const schema = {
         slug: Joi.string().min(2).max(200).required(),
         abbr: Joi.string().min(2).max(50),
         type: Joi.string().valid(['PERSON', 'ORG', 'PLACE', 'PRODUCT', 'WORK']),
+        rel: Joi.string().valid(['MENTION']),
     })),
 
     lastFoundAt: Joi.string().isoDate(),
@@ -43,7 +44,7 @@ const schema = {
     countViews: Joi.number().integer().min(0),
 };
 
-const createSchema: Joi.SchemaMap = {
+const createSchema = Joi.object().keys({
     id: schema.id.required(),
     lang: schema.lang.required(),
     country: schema.country.required(),
@@ -61,15 +62,18 @@ const createSchema: Joi.SchemaMap = {
     expiresAt: schema.expiresAt.required(),
 
     countViews: schema.countViews.required(),
-}
+}).required();
 
-const updateSchema: Joi.SchemaMap = {
+const updateSchema = Joi.object().keys({
     id: schema.id.required(),
-    source: schema.source,
-    topics: schema.topics,
+    set: Joi.object().keys({
+        source: schema.source,
+        topics: schema.topics,
 
-    lastFoundAt: schema.lastFoundAt,
-    expiresAt: schema.expiresAt,
+        lastFoundAt: schema.lastFoundAt,
+        expiresAt: schema.expiresAt,
 
-    countViews: schema.countViews,
-}
+        countViews: schema.countViews,
+    }),
+    delete: Joi.array().items(Joi.valid(['topics']))
+}).or('set', 'delete').required();
