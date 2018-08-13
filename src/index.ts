@@ -11,10 +11,10 @@ export {
 } from './quote-helper';
 
 export {
-    Topic,
-    TopicLocationMap,
-    TopicType,
-} from './topic';
+    QuoteTopic,
+    QuoteTopicType,
+    QuoteTopicRelation,
+} from './quote-topic';
 
 export {
     LatestQuotesByAuthorQueryParams,

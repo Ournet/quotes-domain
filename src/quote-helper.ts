@@ -23,7 +23,6 @@ export class QuoteHelper {
             country: params.country,
             lang: params.lang,
             topics: params.topics,
-            topicsLocation: params.topicsLocation,
             createdAt,
             expiresAt,
             lastFoundAt,

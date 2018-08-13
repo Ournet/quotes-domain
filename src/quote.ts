@@ -1,4 +1,4 @@
-import { Topic, TopicLocationMap } from "./topic";
+import { QuoteTopic } from "./quote-topic";
 
 export interface Quote {
     id: string
@@ -10,8 +10,7 @@ export interface Quote {
     author: QuoteAuthor
     text: string
 
-    topics?: Topic[]
-    topicsLocation?: TopicLocationMap
+    topics?: QuoteTopic[]
 
     lastFoundAt: string
     createdAt: string
@@ -39,8 +38,7 @@ export interface BuildQuoteParams {
     source: QuoteSource
     /** Author details */
     author: QuoteAuthor
-    topics?: Topic[]
-    topicsLocation?: TopicLocationMap
+    topics?: QuoteTopic[]
     text: string
 
     lastFoundAt?: string
