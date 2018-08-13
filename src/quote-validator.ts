@@ -66,8 +66,6 @@ const createSchema: Joi.SchemaMap = {
 const updateSchema: Joi.SchemaMap = {
     id: schema.id.required(),
     source: schema.source,
-    author: schema.author,
-    text: schema.text,
     topics: schema.topics,
 
     lastFoundAt: schema.lastFoundAt,
