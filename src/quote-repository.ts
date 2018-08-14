@@ -62,4 +62,10 @@ export interface QuoteRepository extends Repository<Quote> {
      * @param params Filter params
      */
     topAuthors(params: LatestQuotesQueryParams): Promise<TopItem[]>
+
+    /**
+     * Top author`s topics in a period. Expensive operation. Cache required!
+     * @param params Filter params
+     */
+    topAuthorTopics(params: LatestQuotesByAuthorQueryParams): Promise<TopItem[]>
 }
