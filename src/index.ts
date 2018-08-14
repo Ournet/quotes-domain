@@ -24,6 +24,7 @@ export {
     CountQuotesByTopicQueryParams,
     CountQuotesQueryParams,
     QuoteRepository,
+    TopItem,
 } from './quote-repository';
 
 export {

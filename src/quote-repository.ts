@@ -38,6 +38,11 @@ export interface CountQuotesByTopicQueryParams extends CountQuotesQueryParams {
     relation?: QuoteTopicRelation
 }
 
+export interface TopItem {
+    id: string
+    count: number
+}
+
 export interface QuoteRepository extends Repository<Quote> {
     latest(params: LatestQuotesQueryParams, options?: RepositoryAccessOptions<Quote>): Promise<Quote[]>
     latestByTopic(params: LatestQuotesByTopicQueryParams, options?: RepositoryAccessOptions<Quote>): Promise<Quote[]>
@@ -46,4 +51,15 @@ export interface QuoteRepository extends Repository<Quote> {
     count(params: CountQuotesQueryParams): Promise<number>
     countByTopic(params: CountQuotesByTopicQueryParams): Promise<number>
     countByAuthor(params: CountQuotesByAuthorQueryParams): Promise<number>
+
+    /**
+     * Top topics in a period. Expensive operation. Cache required!
+     * @param params Filter params
+     */
+    topTopics(params: LatestQuotesQueryParams): Promise<TopItem[]>
+    /**
+     * Top authors in a period. Expensive operation. Cache required!
+     * @param params Filter params
+     */
+    topAuthors(params: LatestQuotesQueryParams): Promise<TopItem[]>
 }
