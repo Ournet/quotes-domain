@@ -9,7 +9,8 @@ import { QuoteTopicRelation } from './quote-topic';
 export interface QuotesQueryParams {
     lang: string
     country: string
-    lastFoundAt?: string
+    maxDate?: string
+    minDate?: string
 }
 
 export interface LatestQuotesQueryParams extends QuotesQueryParams {
