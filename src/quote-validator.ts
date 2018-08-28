@@ -23,6 +23,7 @@ const schema = {
 
     author: Joi.object().keys({
         id: Joi.string().min(4).max(40).required(),
+        slug: Joi.string().min(2).max(100).required(),
         name: Joi.string().min(2).max(200).required(),
     }),
 

@@ -21,6 +21,7 @@ export interface Quote {
 
 export type QuoteAuthor = {
     name: string
+    slug: string
     id: string
 }
 
