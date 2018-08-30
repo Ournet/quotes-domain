@@ -27,14 +27,14 @@ const schema = {
         name: Joi.string().min(2).max(200).required(),
     }),
 
-    text: Joi.string().min(QUOTE_TEXT_MIN_LENGTH).max(QUOTE_TEXT_MAX_LENGTH),
+    text: Joi.string().min(QUOTE_TEXT_MIN_LENGTH).max(QUOTE_TEXT_MAX_LENGTH).truncate(true),
 
     topics: Joi.array().items(Joi.object().keys({
         id: Joi.string().min(4).max(40).required(),
         name: Joi.string().min(2).max(200).required(),
         slug: Joi.string().min(2).max(200).required(),
         abbr: Joi.string().min(2).max(50),
-        type: Joi.string().valid(['PERSON', 'ORG', 'PLACE', 'PRODUCT', 'WORK']),
+        type: Joi.string().valid(['PERSON', 'ORG', 'PLACE', 'PRODUCT', 'WORK', 'EVENT']),
         rel: Joi.string().valid(['MENTION']),
     })),
 

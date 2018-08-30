@@ -6,7 +6,7 @@ import { QUOTE_TEXT_MAX_LENGTH, QUOTE_EXPIRE_DAYS } from "./config";
 export class QuoteHelper {
 
     static build(params: BuildQuoteParams): Quote {
-        const text = truncateAt(params.text.trim(), QUOTE_TEXT_MAX_LENGTH);
+        const text = truncateAt(params.text.trim(), QUOTE_TEXT_MAX_LENGTH - 1);
         const textHash = QuoteHelper.textHash(text);
         const idHash = md5([params.author.id, textHash].join('|'));
         const id = [params.country.trim(), params.lang.trim(), idHash].join('');
