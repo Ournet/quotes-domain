@@ -18,7 +18,7 @@ const schema = {
         id: Joi.string().min(16).max(40),
         host: Joi.string().min(4).max(100).required(),
         path: Joi.string().min(1).max(800).required(),
-        title: Joi.string().min(2).max(200).required(),
+        title: Joi.string().min(2).max(200).truncate(true).required(),
     }),
 
     author: Joi.object().keys({
@@ -36,7 +36,7 @@ const schema = {
         abbr: Joi.string().min(2).max(50),
         type: Joi.string().valid(['PERSON', 'ORG', 'PLACE', 'PRODUCT', 'WORK', 'EVENT']),
         rel: Joi.string().valid(['MENTION']),
-    })),
+    })).min(1).max(6).unique(),
 
     lastFoundAt: Joi.string().isoDate(),
     createdAt: Joi.string().isoDate(),
