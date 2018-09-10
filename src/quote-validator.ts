@@ -1,8 +1,9 @@
-import { EntityValidator, Joi } from "@ournet/domain";
 import { Quote } from "./quote";
 import { QUOTE_TEXT_MIN_LENGTH, QUOTE_TEXT_MAX_LENGTH } from "./config";
+import { JoiEntityValidator } from "@ournet/domain";
+import Joi = require('joi');
 
-export class QuoteValidator extends EntityValidator<Quote> {
+export class QuoteValidator extends JoiEntityValidator<Quote> {
     constructor() {
         super({ createSchema, updateSchema });
     }
