@@ -6,6 +6,7 @@ export interface Quote {
     country: string
     /** Source news url */
     source: QuoteSource
+    sourcesIds: string[]
     /** Author details */
     author: QuoteAuthor
     text: string
@@ -17,6 +18,9 @@ export interface Quote {
     expiresAt: number
 
     countViews: number
+    countSources: number
+
+    popularity?: number
 }
 
 export type QuoteAuthor = {
@@ -29,7 +33,7 @@ export type QuoteSource = {
     host: string
     path: string
     title: string
-    id?: string
+    id: string
 }
 
 export interface BuildQuoteParams {

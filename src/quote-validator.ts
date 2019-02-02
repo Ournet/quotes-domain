@@ -16,11 +16,12 @@ const schema = {
     country: Joi.string().regex(/^[a-z]{2}$/),
 
     source: Joi.object().keys({
-        id: Joi.string().min(16).max(40),
+        id: Joi.string().min(16).max(40).required(),
         host: Joi.string().min(4).max(100).required(),
         path: Joi.string().min(1).max(800).required(),
         title: Joi.string().min(2).max(200).truncate(true).required(),
     }),
+    sourcesIds: Joi.array().items(Joi.string().min(16).max(40)).unique().min(1).max(100),
 
     author: Joi.object().keys({
         id: Joi.string().min(4).max(40).required(),
@@ -44,6 +45,9 @@ const schema = {
     expiresAt: Joi.date().timestamp().raw(),
 
     countViews: Joi.number().integer().min(0),
+    countSources: Joi.number().integer().min(0),
+
+    popularity: Joi.number().integer(),
 };
 
 const createSchema = Joi.object().keys({
@@ -52,6 +56,7 @@ const createSchema = Joi.object().keys({
     country: schema.country.required(),
 
     source: schema.source.required(),
+    sourcesIds: schema.sourcesIds.required(),
 
     author: schema.author.required(),
 
@@ -64,18 +69,24 @@ const createSchema = Joi.object().keys({
     expiresAt: schema.expiresAt.required(),
 
     countViews: schema.countViews.required(),
+    countSources: schema.countSources.required(),
+    popularity: schema.popularity,
 }).required();
 
 const updateSchema = Joi.object().keys({
     id: schema.id.required(),
     set: Joi.object().keys({
         source: schema.source,
+        sourcesIds: schema.sourcesIds,
         topics: schema.topics,
 
         lastFoundAt: schema.lastFoundAt,
         expiresAt: schema.expiresAt,
 
         countViews: schema.countViews,
+        countSources: schema.countSources,
+
+        popularity: schema.popularity,
     }),
-    delete: Joi.array().items(Joi.valid(['topics']))
+    delete: Joi.array().items(Joi.valid(['topics', 'popularity'])),
 }).or('set', 'delete').required();

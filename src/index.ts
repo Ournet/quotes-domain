@@ -17,9 +17,9 @@ export {
 } from './quote-topic';
 
 export {
-    LatestQuotesByAuthorQueryParams,
-    LatestQuotesByTopicQueryParams,
-    LatestQuotesQueryParams,
+    ListQuotesByAuthorQueryParams,
+    ListQuotesByTopicQueryParams,
+    ListQuotesQueryParams,
     CountQuotesByAuthorQueryParams,
     CountQuotesByTopicQueryParams,
     CountQuotesQueryParams,

@@ -1,5 +1,5 @@
 import { BuildQuoteParams, Quote } from "./quote";
-import { clearText, atonic, md5 } from '@ournet/domain';
+import { clearText, atonic, md5, uniq } from '@ournet/domain';
 import { truncateAt } from "./helpers";
 import { QUOTE_TEXT_MAX_LENGTH, QUOTE_EXPIRE_DAYS } from "./config";
 
@@ -27,7 +27,11 @@ export class QuoteHelper {
             expiresAt,
             lastFoundAt,
             countViews: params.countViews || 0,
+            countSources: 1,
+            sourcesIds: [params.source.id],
         };
+
+        QuoteHelper.setQuotePopularity(quote);
 
         return quote;
     }
@@ -48,5 +52,22 @@ export class QuoteHelper {
         expiresAt.setDate(expiresAt.getDate() + QUOTE_EXPIRE_DAYS);
 
         return Math.floor(expiresAt.getTime() / 1000);
+    }
+
+    static quotePopularity(quote: Quote) {
+        if (quote.sourcesIds && quote.sourcesIds.length > 1) {
+            const popularity = uniq(quote.sourcesIds).length;
+            if (popularity > 1) {
+                return popularity;
+            }
+        }
+    }
+
+    static setQuotePopularity(quote: Quote) {
+        const popularity = QuoteHelper.quotePopularity(quote);
+        if (popularity) {
+            quote.popularity = popularity;
+        }
+        return quote;
     }
 }
