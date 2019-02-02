@@ -59,10 +59,10 @@
     pretty-ms "^0.2.1"
     text-table "^0.2.0"
 
-"@ournet/domain@^0.3.3":
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/@ournet/domain/-/domain-0.3.3.tgz#549e495b41141b596e816c0eef705d4bbea6c0fd"
-  integrity sha512-YilpjstmvRJ1Mq8+mEabp6iT6M5U/RBzCoq3p55bqW3qMXaTHtDixXqZOcF9YqR+pLLgc2KsNcRKkyJAW+FPIA==
+"@ournet/domain@~0.3.x":
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/@ournet/domain/-/domain-0.3.4.tgz#59a8fb3c13a38b3a82601e9c3fbde40eee9d7c93"
+  integrity sha512-PNpVFhgtOlgQGeRkjQWZjBkbP7edHzX6LZRNteXk2/sjO55kg/Bf7JahbxywZ6K+WQsjWpbUJgtHHHS7aoqaAQ==
   dependencies:
     atonic "^1.0.4"
     ava "^0.25.0"
@@ -251,7 +251,7 @@ ava-init@^0.2.0:
     read-pkg-up "^2.0.0"
     write-pkg "^3.1.0"
 
-ava@^0.25.0:
+ava@^0.25.0, ava@~0.25.x:
   version "0.25.0"
   resolved "https://registry.yarnpkg.com/ava/-/ava-0.25.0.tgz#8ac87780514f96a6fd42e1306eaa0752ce3a407f"
   integrity sha512-4lGNJCf6xL8SvsKVEKxEE46se7JAUIAZoKHw9itTQuwcsydhpAMkBs5gOOiWiwt0JKNIuXWc2/r4r8ZdcNrBEw==
