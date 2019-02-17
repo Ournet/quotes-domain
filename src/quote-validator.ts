@@ -20,6 +20,7 @@ const schema = {
         host: Joi.string().min(4).max(100).required(),
         path: Joi.string().min(1).max(800).required(),
         title: Joi.string().min(2).max(200).truncate(true).required(),
+        imageId: Joi.string().min(16).max(40),
     }),
     sourcesIds: Joi.array().items(Joi.string().min(16).max(40)).unique().min(1).max(100),
 
@@ -48,6 +49,12 @@ const schema = {
     countSources: Joi.number().integer().min(0),
 
     popularity: Joi.number().integer(),
+
+    events: Joi.object().keys({
+        id: Joi.string().min(16).max(40).required(),
+        title: Joi.string().min(10).max(200).trim().truncate().required(),
+        imageId: Joi.string().min(16).max(40),
+    }).max(20),
 };
 
 const createSchema = Joi.object().keys({
@@ -71,6 +78,7 @@ const createSchema = Joi.object().keys({
     countViews: schema.countViews.required(),
     countSources: schema.countSources.required(),
     popularity: schema.popularity,
+    events: schema.events,
 }).required();
 
 const updateSchema = Joi.object().keys({
@@ -87,6 +95,7 @@ const updateSchema = Joi.object().keys({
         countSources: schema.countSources,
 
         popularity: schema.popularity,
+        events: schema.events,
     }),
     delete: Joi.array().items(Joi.valid(['topics', 'popularity'])),
 }).or('set', 'delete').required();

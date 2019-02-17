@@ -21,6 +21,14 @@ export interface Quote {
     countSources: number
 
     popularity?: number
+
+    events?: QuoteEvent[]
+}
+
+export type QuoteEvent = {
+    title: string
+    id: string
+    imageId?: string
 }
 
 export type QuoteAuthor = {
@@ -34,6 +42,7 @@ export type QuoteSource = {
     path: string
     title: string
     id: string
+    imageId?: string
 }
 
 export interface BuildQuoteParams {
@@ -51,4 +60,6 @@ export interface BuildQuoteParams {
     expiresAt?: number
 
     countViews?: number
+
+    events?: QuoteEvent[]
 }

@@ -54,12 +54,12 @@ export interface QuoteRepository extends Repository<Quote> {
     countByTopic(params: CountQuotesByTopicQueryParams): Promise<number>
     countByAuthor(params: CountQuotesByAuthorQueryParams): Promise<number>
 
-    popularQuotes(params: ListQuotesQueryParams, options?: RepositoryAccessOptions<Quote>): Promise<Quote[]>
-    popularQuotesByTopic(params: ListQuotesByTopicQueryParams, options?: RepositoryAccessOptions<Quote>): Promise<Quote[]>
+    // popularQuotes(params: ListQuotesQueryParams, options?: RepositoryAccessOptions<Quote>): Promise<Quote[]>
+    // popularQuotesByTopic(params: ListQuotesByTopicQueryParams, options?: RepositoryAccessOptions<Quote>): Promise<Quote[]>
     popularQuotesByAuthor(params: ListQuotesByAuthorQueryParams, options?: RepositoryAccessOptions<Quote>): Promise<Quote[]>
 
-    countPopularQuotes(params: CountQuotesQueryParams): Promise<number>
-    countPopularQuotesByTopic(params: CountQuotesByTopicQueryParams): Promise<number>
+    // countPopularQuotes(params: CountQuotesQueryParams): Promise<number>
+    // countPopularQuotesByTopic(params: CountQuotesByTopicQueryParams): Promise<number>
     countPopularQuotesByAuthor(params: CountQuotesByAuthorQueryParams): Promise<number>
 
     /**

@@ -1,5 +1,5 @@
 import { BuildQuoteParams, Quote } from "./quote";
-import { clearText, atonic, md5, uniq } from '@ournet/domain';
+import { clearText, atonic, md5, uniq, uniqByProperty } from '@ournet/domain';
 import { truncateAt } from "./helpers";
 import { QUOTE_TEXT_MAX_LENGTH, QUOTE_EXPIRE_DAYS } from "./config";
 
@@ -29,6 +29,7 @@ export class QuoteHelper {
             countViews: params.countViews || 0,
             countSources: 1,
             sourcesIds: [params.source.id],
+            events: uniqByProperty(params.events || [], 'id'),
         };
 
         QuoteHelper.setQuotePopularity(quote);
