@@ -39,7 +39,7 @@ const schema = {
         abbr: Joi.string().min(2).max(50),
         type: Joi.string().valid(['PERSON', 'ORG', 'PLACE', 'PRODUCT', 'WORK', 'EVENT']),
         rel: Joi.string().valid(['MENTION']),
-    })).min(1).max(6).unique(),
+    })).min(1).max(6).unique().unique((a, b) => a.id === b.id),
 
     lastFoundAt: Joi.string().isoDate(),
     createdAt: Joi.string().isoDate(),
@@ -50,11 +50,11 @@ const schema = {
 
     popularity: Joi.number().integer(),
 
-    events: Joi.object().keys({
+    events: Joi.array().items(Joi.object().keys({
         id: Joi.string().min(16).max(40).required(),
         title: Joi.string().min(10).max(200).trim().truncate().required(),
         imageId: Joi.string().min(16).max(40),
-    }).max(20),
+    })).max(20).unique((a, b) => a.id === b.id),
 };
 
 const createSchema = Joi.object().keys({
